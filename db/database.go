@@ -7,7 +7,6 @@ import (
 	"gorm.io/gorm"
 	"learning-golang/constants"
 	"os"
-	"time"
 )
 
 func InitDB() (*gorm.DB, error) {
@@ -48,22 +47,4 @@ func GetDataSourceName() string {
 
 	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", dbUser, dbPassword, dbHost, dbPort, dbName)
 	return dataSourceName
-}
-
-func GetDataSourceName2() string {
-	jst, err := time.LoadLocation("Asia/Tokyo")
-	if err != nil {
-		// エラーハンドリング
-	}
-	c := gorm.Config{
-		DBName:    "db",
-		User:      "user",
-		Passwd:    "password",
-		Addr:      "localhost:3306",
-		Net:       "tcp",
-		ParseTime: true,
-		Collation: "utf8mb4_unicode_ci",
-		Loc:       jst,
-	}
-	return c
 }
